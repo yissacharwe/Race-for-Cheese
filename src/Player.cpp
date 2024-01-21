@@ -7,18 +7,18 @@
 
 // class constructor
 Player::Player(Location origin)
-	: m_location(origin)//, cRef(controller), boardRef(board)
+	: m_location(origin)
 {
 
 }
 
 // move player to specified location
-void Player::move(GameController& game, Board& board, Location nextLocation)
+bool Player::move(GameController& game, Board& board, Location nextLocation)
 {
 	// board boundries
 	if (nextLocation.row < 0 || nextLocation.row > board.getSizeRows() - 1 ||
 		nextLocation.col < 0 || nextLocation.col > board.getSizeCols() - 1)
-		return;
+		return false;
 
 	auto c = board.getObjectAt(nextLocation);
 	switch (c)
@@ -27,34 +27,34 @@ void Player::move(GameController& game, Board& board, Location nextLocation)
 			board.clearObject(m_location);
 			board.insertObject(nextLocation, '%');
 			setLocation(nextLocation);
-			break;
+			return true;
 		case '#': // wall
-			break;
+			return false;
 		case 'D': // door
 			if (!game.openDoor())
-				break;
+				return false;
 			board.clearObject(m_location);
 			board.insertObject(nextLocation, '%');
 			setLocation(nextLocation);
-			break;
+			return true;
 		case '*': // cheese
 			board.clearObject(m_location);
 			board.insertObject(nextLocation, '%');
 			setLocation(nextLocation);
 			game.eatCheese();
-			break;
+			return true;
 		case '$': // gift
 			board.clearObject(m_location);
 			board.insertObject(nextLocation, '%');
 			setLocation(nextLocation);
 			game.removeCat();
-			break;
+			return true;
 		case 'F': // key
 			board.clearObject(m_location);
 			board.insertObject(nextLocation, '%');
 			setLocation(nextLocation);
 			game.addKey();
-			break;
+			return true;
 		case '^': // cat
 			game.loseLife();
 			if (board.getLives() > 0) // not over yet
@@ -64,8 +64,9 @@ void Player::move(GameController& game, Board& board, Location nextLocation)
 				setLocation(board.getPlayerLocation());
 				game.refreshCats();
 			}
-			break;
+			return true;
 		default:
+			std::cout << "unrecognized object";
 			break;
 	}
 }

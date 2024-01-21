@@ -8,7 +8,7 @@ class Player
 {
 public:
 	Player(Location);
-	void move(GameController&, Board&, Location);
+	bool move(GameController&, Board&, Location);
 	Location getLocation() const;
 	void setLocation(Location);
 

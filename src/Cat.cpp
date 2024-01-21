@@ -11,7 +11,7 @@ Cat::Cat(Location origin, Location mouse, int vectorIndex)
 	m_initLocation = origin;
 }
 
-void Cat::move()
+void Cat::move(GameController& game, Board& board, Location mouseLocation)
 {
 
 }
@@ -24,7 +24,7 @@ Location Cat::getLocation() const
 // set location to initial location
 void Cat::resetLocation()
 {
-	
+	m_location = m_initLocation;
 }
 
 // set location

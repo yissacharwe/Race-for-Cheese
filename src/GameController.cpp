@@ -32,6 +32,8 @@ void GameController::run()
 	auto wait = _getch(); // wait for user to press a key
 
 	loadNextLevel();
+
+	// Game Loop
 	for (auto exit = false; !exit; )
 	{
 		// render
@@ -39,16 +41,23 @@ void GameController::run()
 		displayInterface();
 
 		// handleInput
-		const auto c = _getch();
-		switch (c)
-		{
-		case 0:
-		case Keys::SPECIAL_KEY:
-			handleSpecialKey();
-			break;
-		default:
-			exit = handleRegularKey(c);
-			break;
+		while (!turnPlayed) {
+			const auto c = _getch();
+			switch (c)
+			{
+			case 0:
+			case Keys::SPECIAL_KEY:
+				handleSpecialKey();
+				break;
+
+			case Keys::SPACE_BAR: // skip turn
+				turnPlayed = true;
+				break;
+
+			default:
+				exit = handleRegularKey(c);
+				break;
+			}
 		}
 		if (m_board.getLives() == 0)
 			exit = true;
@@ -58,6 +67,7 @@ void GameController::run()
 			loadNextLevel();
 			exit = gameComplete;
 		}
+
 	} // end for loop
 
 	system("cls");
@@ -100,22 +110,22 @@ void GameController::handleSpecialKey()
 	{
 	case SpecialKeys::UP:
 		nextLocation = Location(origin.row - 1, origin.col);
-		m_player.move(*this, m_board, nextLocation);
+		turnPlayed = m_player.move(*this, m_board, nextLocation);
 		break;
 
 	case SpecialKeys::DOWN:
 		nextLocation = Location(origin.row + 1, origin.col);
-		m_player.move(*this, m_board, nextLocation);
+		turnPlayed = m_player.move(*this, m_board, nextLocation);
 		break;
 
 	case SpecialKeys::LEFT:
 		nextLocation = Location(origin.row, origin.col-1);
-		m_player.move(*this, m_board, nextLocation);
+		turnPlayed = m_player.move(*this, m_board, nextLocation);
 		break;
 
 	case SpecialKeys::RIGHT:
 		nextLocation = Location(origin.row, origin.col+1);
-		m_player.move(*this, m_board, nextLocation);
+		turnPlayed = m_player.move(*this, m_board, nextLocation);
 		break;
 
 	default:
@@ -140,9 +150,6 @@ bool GameController::handleRegularKey(int c)
 		break;
 	case 'w':
 		std::cout << m_board.getCheese();
-		break;
-	case Keys::SPACE_BAR: // skip turn
-		std::cout << "Spacebar presed.\n";
 		break;
 	case Keys::ESCAPE:
 		std::cout << "Escape pressed. Exiting...\n";

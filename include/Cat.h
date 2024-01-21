@@ -7,10 +7,9 @@ class GameController;
 class Cat
 {
 public:
-	Cat() = delete;
-	Cat(Location, Location, int);
+	Cat(Location origin, Location, int);
 
-	void move();
+	void move(GameController&, Board&, Location mouseLocation);
 
 	Location getLocation() const;
 	Location getPlayerLocation() const;

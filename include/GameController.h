@@ -33,6 +33,7 @@ private:
 	Board m_board;
 	Player m_player;
 	std::vector<Cat> m_cats;
+	bool turnPlayed = false; // true when player makes a successful move
 
 	bool gameComplete = false;
 	std::string msgGameOver = "\n\n  Game Over!\n";
