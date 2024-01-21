@@ -1,0 +1,5 @@
+﻿configure_file ("Board.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Instructions.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("Welcome.txt" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("theme.wav" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("victory.wav" ${CMAKE_BINARY_DIR} COPYONLY)
