@@ -25,10 +25,10 @@ Exercise 2: "Race For Cheese"
 ---------------------------------------------------------------------------------------------------
 General description:
 ---------------------------------------------------------------------------------------------------
-"Race for Cheese" is a cRefsole played Board Game,
-the entire Game's User Interface runs from the user cRefsole (terminal).
+"Race for Cheese" is an old style action game,
+the entire Game's User Interface runs from the user console (terminal).
 
-The Player cReftrols a Mouse to move around the board, avoiding Cats and collecting objects
+The Player controls a Mouse to move around the board, avoiding Cats and collecting objects
 such as gifts, keys and most importantly, Cheese. The player can open a door with a key,
 diminish a Cat with a gift, or lose a life when getting caught by a melicious Cat.
 
@@ -42,14 +42,10 @@ Object of the Game: Collect all the cheese.
 List of files:
 
 Main Datastructres:
-- mention the use of vectors
 
 Algorithms:
-- Describe the Algorithm that cReftrols Cats movement
-- describe any other algorithms of which the program makes use of
 
 Design:
-- Describe 
 
 Known Bugs:
 
