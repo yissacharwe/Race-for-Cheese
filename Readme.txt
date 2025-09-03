@@ -20,7 +20,9 @@
 ░ ░       ░  ░  ░   ░  ░   ░  ░      ░     ░  ░                
 ░
 
-Exercise 2: "Race For Cheese"
+Jerusalem Multidisciplinary College
+Course: Object Oriented Programming with C++
+Exercise #2: "Race For Cheese"
 
 ---------------------------------------------------------------------------------------------------
 General description:
